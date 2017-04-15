@@ -18,19 +18,47 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// EVENTS
-Route::get('/events', 'EventController@index'); //show all
-Route::get('/events/{id}', 'EventController@show'); //show one
-Route::post('/events/posts', 'EventController@store'); //save one
-Route::get('/events/edit/{id}', 'EventController@edit'); //get info of one
-// Route::post('/events/update/{id}', 'EventController@update'); //update one
-Route::delete('/events/delete/{id}', 'EventController@delete'); //destroy one
+///////////// EVENTS /////////////
+Route::get('/events', [
+  'as' => 'events',
+  'uses' => 'EventController@showAll',
+
+]);
+
+Route::get('/events/{id}', [
+  'as' => 'events/{id}',
+  'uses' => 'EventController@showOne',
+]);
+
+Route::post('/events/posts',[
+  'as' => 'events/posts',
+  'uses' => 'EventController@store',
+  'middleware' => 'auth.jwt'
+]);
+
+Route::get('/events/edit/{id}',[
+  'as' => 'events/edit/{id}',
+  'uses' => 'EventController@edit',
+  'middleware' => 'auth.jwt'
+]);
+
+// Route::post('/events/update/{id}',[
+//   'as' => 'events/edit/{id}',
+//   'uses' => 'EventController@update',
+// ]);
+
+Route::delete('/events/delete/{id}',[
+  'as' => 'events/delete/{id}',
+  'uses' => 'EventController@delete',
+  'middleware' => 'auth.jwt'
+]); //destroy one
 
 
-// USERS
+///////////// USERS /////////////
 Route::post('/signup', [
-	'as' => 'register',
-	'uses' => 'UserController@signup'
+	'as' => 'signup',
+	'uses' => 'UserController@signup',
+
 	]);
 Route::post('/login', [
 	'as' => 'login',

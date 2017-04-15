@@ -6,18 +6,23 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use JWTAuth;
 
 class EventController extends Controller
 {
 
 
-public function index(){
+  public function showAll(){
     //$events = Event::all();
     $events = Event::all();
-    return $events->toArray();
+    $response =[
+      'events' => $events
+    ];
+    return response()->json($response, 200);
+  //  return $events->toArray();
 }
 
-public function show($event) //find wildcard
+  public function showOne($event) //find wildcard
     {
     //$event = Event::find($event);
     // $event = DB::select('SELECT * FROM events WHERE id='.$id);
@@ -27,8 +32,8 @@ public function show($event) //find wildcard
     }
 
     public function store(Request $request) {
+  $user = JWTAuth::parseToken()->toUser();
         $event = new Event();
-
         $event->event_title = $request->input('event_title', false);
         $event->event_description = $request->input('event_description', false);
         $event->event_location = $request->input('event_location', false);
@@ -36,11 +41,11 @@ public function show($event) //find wildcard
         $event->event_time = $request->input('event_time', false);
         $event->save();
 
-        return 'Event record successfully created';
+        return response()->json(['event'=>$event, 'user'=>$user], 201);
+        //return 'Event record successfully created';
     }
     public function edit(Request $request, $id) {
       //  $event = Event::find($id);
-       //
       //  return "Found event " . $event->id;
       return Event::find($id);
     }
