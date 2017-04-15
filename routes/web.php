@@ -2,6 +2,7 @@
 
 
 use App\Event;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,5 +28,11 @@ Route::delete('/events/delete/{id}', 'EventController@delete'); //destroy one
 
 
 // USERS
-Route::get('/users', 'UsersController@index');
-Route::get('/users/{id}', 'UsersController@show');
+Route::post('/signup', [
+	'as' => 'register',
+	'uses' => 'UserController@signup'
+	]);
+Route::post('/login', [
+	'as' => 'login',
+	'uses' => 'UserController@login'
+	]);
