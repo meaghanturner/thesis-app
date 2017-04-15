@@ -39,9 +39,10 @@ public function show($event) //find wildcard
         return 'Event record successfully created';
     }
     public function edit(Request $request, $id) {
-       $event = Event::find($id);
-
-       return "Found event " . $event->id;
+      //  $event = Event::find($id);
+       //
+      //  return "Found event " . $event->id;
+      return Event::find($id);
     }
    //
   //   public function update(Request $request, $id) {
@@ -58,9 +59,8 @@ public function show($event) //find wildcard
   //  }
 
    public function delete(Request $request, $id) {
-     $event = Event::find($request->input('id'));
-
-      //  $event = Event::find($id);
+     //$event = Event::find($request->input('id'));
+        $event = Event::find($id);
         $event->delete();
 
         return "Event record successfully deleted #" . $request->input('id');
