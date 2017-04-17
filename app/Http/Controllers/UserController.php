@@ -56,12 +56,12 @@ public function login(Request $request)
         }
       else if (!$token = JWTAuth::attempt($credentials)){
         return response()->json([
-          'error'=>'Invalid Credentials!', 'status' => 422
+          'error'=>'You credentials are invalid!', 'status' => 422
           ]);
     }
   } catch (JWTException $e){
       return response()->json([
-        'error'=>'Could not create token!',  'status' => 422
+        'error'=>'Sorry we could not create token!',  'status' => 422
         ]);
   }
   return response()->json([

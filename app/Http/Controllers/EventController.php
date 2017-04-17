@@ -11,15 +11,22 @@ use JWTAuth;
 class EventController extends Controller
 {
 
+  // public function __construct()
+  //    {
+  //        // Apply the jwt.auth middleware to all methods in this controller, except auth method
+  //
+  //        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+  //    }
 
   public function showAll(){
-    //$events = Event::all();
     $events = Event::all();
-    $response =[
-      'events' => $events
-    ];
-    return response()->json($response, 200);
-  //  return $events->toArray();
+    //below for JWT tokens when working
+    // $events = Event::all();
+    // $response =[
+    //   'events' => $events
+    // ];
+    // return response()->json($response, 200);
+  return $events->toArray();
 }
 
   public function showOne($event) //find wildcard

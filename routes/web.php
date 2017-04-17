@@ -21,25 +21,25 @@ Route::get('/', function () {
 ///////////// EVENTS /////////////
 Route::get('/events', [
   'as' => 'events',
-  'uses' => 'EventController@showAll',
+  'uses' => 'EventController@showAll'
 
 ]);
 
 Route::get('/events/{id}', [
   'as' => 'events/{id}',
-  'uses' => 'EventController@showOne',
+  'uses' => 'EventController@showOne'
 ]);
 
 Route::post('/events/posts',[
   'as' => 'events/posts',
-  'uses' => 'EventController@store',
-  'middleware' => 'auth.jwt'
+  'uses' => 'EventController@store'
+  // 'middleware' => 'auth.jwt'
 ]);
 
 Route::get('/events/edit/{id}',[
   'as' => 'events/edit/{id}',
-  'uses' => 'EventController@edit',
-  'middleware' => 'auth.jwt'
+  'uses' => 'EventController@edit'
+  // 'middleware' => 'auth.jwt'
 ]);
 
 // Route::post('/events/update/{id}',[
@@ -49,8 +49,8 @@ Route::get('/events/edit/{id}',[
 
 Route::delete('/events/delete/{id}',[
   'as' => 'events/delete/{id}',
-  'uses' => 'EventController@delete',
-  'middleware' => 'auth.jwt'
+  'uses' => 'EventController@delete'
+  // 'middleware' => 'auth.jwt'
 ]); //destroy one
 
 
