@@ -30,11 +30,13 @@ Route::get('/events/{id}', [
   'uses' => 'EventController@showOne'
 ]);
 
-Route::post('/events/posts',[
-  'as' => 'events/posts',
-  'uses' => 'EventController@store'
-  // 'middleware' => 'auth.jwt'
-]);
+// Route::post('/events/posts',[
+//   'as' => 'events/posts',
+//   'uses' => 'EventController@store'
+//   // 'middleware' => 'auth.jwt'
+// ]);
+
+Route::post('/events/posts', 'EventController@store');
 
 Route::get('/events/edit/{id}',[
   'as' => 'events/edit/{id}',

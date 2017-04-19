@@ -11,7 +11,7 @@ class Event extends Model
       'event_description',
       'event_location',
       'event_date',
-      'event_time',
+      'event_time'
       ];
 
 }
